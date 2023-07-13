@@ -1,30 +1,43 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import SideBar from "../components/SideBar.astro";
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import SideBar from '../components/SideBar.astro';
 
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
-const { image, title = SITE_TITLE, description = SITE_DESCRIPTION, includeSidebar = true, sideBarActiveItemID } = Astro.props;
+const {
+    image,
+    title = SITE_TITLE,
+    description = SITE_DESCRIPTION,
+    includeSidebar = true,
+    sideBarActiveItemID,
+} = Astro.props;
 ---
-
 
 <!DOCTYPE html>
 <html lang="en" data-theme="lofi">
-  <head>
-    <BaseHead title={title} description={description} image={image} />
-  </head>
-  <body class="min-h-screen flex flex-col">
-    <div class="flex-grow flex">
-      {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
-      <div class="flex-1 bg-synthwave-background">
-        <div class="flex flex-col items-center min-h-screen text-synthwave-primary">
-          <main class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw] flex-grow">
-            <slot />
-          </main>
-          <Footer />
+    <head>
+        <BaseHead title={title} description={description} image={image} />
+    </head>
+    <body class="min-h-screen flex flex-col">
+        <div class="flex-grow flex">
+            {
+                includeSidebar && (
+                    <SideBar sideBarActiveItemID={sideBarActiveItemID} />
+                )
+            }
+            <div class="flex-1 bg-nord-background">
+                <div
+                    class="flex flex-col items-center min-h-screen text-nord-primary"
+                >
+                    <main
+                        class="p-6 pt-10 lg:max-w-[900px] max-w-[100vw] flex-grow"
+                    >
+                        <slot />
+                    </main>
+                    <Footer />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </body>
+    </body>
 </html>

@@ -1,0 +1,40 @@
+---
+const { title, img, desc, url, tags, target = "_blank", pubDate } = Astro.props;
+import { Image } from "@astrojs/image/components";
+---
+
+<div class="mb-4 rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]">
+  <a href={url} target={target}>
+    <div class="hero-content flex-col md:flex-row">
+      {
+        img && (
+          <div class="mr-4">
+            <Image
+              src={img}
+              aspectRatio="16:9"
+              width={750}
+              format="webp"
+              alt={title}
+              class="max-w-full md:max-w-[13rem] rounded-lg"
+            />
+          </div>
+        )
+      }
+      <div class="flex-grow">
+        <div class="flex items-center mb-2">
+          <p class="text-sm font-bold text-gray-500 mr-2">{pubDate}</p>
+        </div>
+        <h1 class="text-xl font-bold mb-2">
+          {title}
+        </h1>
+        <p class="text-sm">{desc}</p>
+        <div class="card-actions justify-end">
+          {
+            tags &&
+              tags.map((tag: unknown) => <div class="badge badge-outline">{tag}</div>)
+          }
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

@@ -1,21 +1,20 @@
 import { defineCollection, z } from 'astro:content';
 
-const blog = defineCollection({
-  // Type-check frontmatter using a schema
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    // Transform string to Date object
-    pubDate: z
-      .string()
-      .or(z.date())
-      .transform((val) => new Date(val)),
-    updatedDate: z
-      .string()
-      .optional()
-      .transform((str) => (str ? new Date(str) : undefined)),
-    heroImage: z.string().optional(),
+const postSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  pubDate: z.string().refine((date) => {
+    const regex = /^\d{2}\d{2}\d{4}$/;
+    return regex.test(date);
   }),
+  tags: z.array(z.string()).optional(),
+  image: z.string().optional(),
 });
 
-export const collections = { blog };
+export type PostSchema = z.infer<typeof postSchema>;
+
+const postCollection = defineCollection({schema: postSchema});
+
+export const collections = {
+    'post': postCollection,
+};

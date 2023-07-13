@@ -1,0 +1,34 @@
+---
+import Base from './Base.astro';
+import type {PostSchema} from '../content/config';
+
+export interface Props extends PostSchema {}
+
+const { title, description, pubDate, image } = Astro.props;
+
+import { Image } from "@astrojs/image/components";
+---
+
+<Base title={title} description={description} image={image}>
+    <main>
+        <article>
+        {
+            image && (
+            <Image
+                aspectRatio={"16:9"}
+                width={750}
+                height={422}
+                src={image}
+                alt={title}
+                class="w-full mb-6"
+            />
+            )
+        }
+        <h1 class="title my-2 text-4xl font-bold">{title}</h1>
+        {pubDate}
+        <br />
+        <div class="divider my-2"></div>
+        <slot />
+        </article>
+    </main>
+</Base>

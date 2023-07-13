@@ -8,12 +8,15 @@ import image from '@astrojs/image';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
-  integrations: [mdx(), sitemap(), tailwind(), image(
-      {
-          serviceEntryPoint: '@astrojs/image/sharp',
-          cacheDir: "./.cache/image",
-          logLevel: 'debug',
-      }
-  )],
+    site: 'https://example.com',
+    integrations: [
+        mdx(),
+        sitemap(),
+        tailwind(),
+        image({
+            serviceEntryPoint: '@astrojs/image/sharp',
+            cacheDir: './.cache/image',
+            logLevel: 'debug',
+        }),
+    ],
 });

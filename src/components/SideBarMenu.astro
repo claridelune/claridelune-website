@@ -3,21 +3,61 @@ const { sideBarActiveItemID } = Astro.props;
 ---
 
 <nav class="space-y-2">
-  <ul>
-    <li class={sideBarActiveItemID === "home" ? "bg-synthwave-secondary" : ""}>
-      <a href="/" class="block py-2 px-4 rounded-md hover:bg-synthwave-secondary">Home</a>
-    </li>
-    <li class={sideBarActiveItemID === "projects" ? "bg-synthwave-secondary" : ""}>
-      <a href="/projects" class="block py-2 px-4 rounded-md hover:bg-synthwave-secondary">Projects</a>
-    </li>
-    <li class={sideBarActiveItemID === "blog" ? "bg-synthwave-secondary" : ""}>
-      <a href="/blog" class="block py-2 px-4 rounded-md hover:bg-synthwave-secondary">Blog</a>
-    </li>
-    <li class={sideBarActiveItemID === "work-journal" ? "bg-synthwave-secondary" : ""}>
-      <a href="/work-journal" class="block py-2 px-4 rounded-md hover:bg-synthwave-secondary">Work Journal</a>
-    </li>
-    <li class={sideBarActiveItemID === "contact" ? "bg-synthwave-secondary" : ""}>
-      <a href="/contact" class="block py-2 px-4 rounded-md hover:bg-synthwave-secondary">Contact</a>
-    </li>
-  </ul>
+    <ul>
+        <li
+            class={sideBarActiveItemID === 'home'
+                ? 'bg-nord-dark rounded-md'
+                : ''}
+        >
+            <a
+                href="/"
+                class="block py-2 px-4 rounded-md hover:bg-nord-secondary"
+                >Home</a
+            >
+        </li>
+        <li
+            class={sideBarActiveItemID === 'projects'
+                ? 'bg-nord-dark rounded-md'
+                : ''}
+        >
+            <a
+                href="/projects"
+                class="block py-2 px-4 rounded-md hover:bg-nord-secondary"
+                >Projects</a
+            >
+        </li>
+        <li
+            class={sideBarActiveItemID === 'blog'
+                ? 'bg-nord-dark rounded-md'
+                : ''}
+        >
+            <a
+                href="/blog"
+                class="block py-2 px-4 rounded-md hover:bg-nord-secondary"
+                >Blog</a
+            >
+        </li>
+        <li
+            class={sideBarActiveItemID === 'work-journal'
+                ? 'bg-nord-dark rounded-md'
+                : ''}
+        >
+            <a
+                href="/journal"
+                class="block py-2 px-4 rounded-md hover:bg-nord-secondary"
+                >Work Journal</a
+            >
+        </li>
+        <li
+            class={sideBarActiveItemID === 'contact'
+                ? 'bg-nord-dark rounded-md'
+                : ''}
+        >
+            <a
+                href="/contact"
+                class="block py-2 px-4 rounded-md hover:bg-nord-secondary"
+                >Contact</a
+            >
+        </li>
+    </ul>
 </nav>
