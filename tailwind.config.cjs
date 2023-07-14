@@ -9,6 +9,7 @@ module.exports = {
                     primary: '#f8f8ff',
                     secondary: '#5535a2',
                     blue: '#2a3865',
+                    bold: '#88A6E5'
                 },
                 nord: {
                     background: '#2e3440',
@@ -17,6 +18,7 @@ module.exports = {
                     gray: '#5E81AC',
                     dark: '#43496E',
                 },
+                'prose-headings': '#5E81AC',
             },
         },
     },

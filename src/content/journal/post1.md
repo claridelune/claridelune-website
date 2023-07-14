@@ -1,6 +1,6 @@
 ---
 title: "Demo Post 1"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+description: "Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd"
 pubDate: "Sep 10 2022"
 tags:
     - lorem

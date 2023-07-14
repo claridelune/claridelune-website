@@ -10,8 +10,9 @@ import { Image } from "@astrojs/image/components";
 ---
 
 <Base title={title} description={description} image={image}>
-    <main>
-        <article>
+    <main class="md:flex md:justify-center">
+        <article class="prose prose-lg max-w-[750px] prose-img:mx-auto text-nord-primary prose-a:text-nord-gray 
+        prose-headings:text-synthwave-bold prose-blockquote:text-synthwave-primary prose-strong:text-nord-gray">
         {
             image && (
             <Image
@@ -24,11 +25,11 @@ import { Image } from "@astrojs/image/components";
             />
             )
         }
-        <h1 class="title my-2 text-4xl font-bold">{title}</h1>
-        {pubDate}
+        <h1 class="title my-2 text-4xl font-bold text-nord-gray">{title}</h1>
+        <span class="text-gray-500">{pubDate}</span>
         <br />
         <div class="divider my-2"></div>
-        <slot />
+        <slot class="prose"/>
         </article>
     </main>
 </Base>
