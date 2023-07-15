@@ -27,11 +27,15 @@ import { Image } from "@astrojs/image/components";
         <h1 class="text-xl font-bold mb-2">
           {title}
         </h1>
-        <p class="text-sm">{desc}</p>
+        <p class="text-sm mb-4">{desc}</p>
         <div class="card-actions justify-end">
           {
             tags &&
-              tags.map((tag: unknown) => <div class="badge badge-outline">{tag}</div>)
+              tags.map((tag: unknown) => 
+              <div class="inline-block mr-2">
+                <a href={`/journal/tag/${tag}`} class="inline-flex items-center px-2.5 py-1.5 rounded-md bg-nord-dark text-nord-primary text-xs">{tag}</a>
+              </div>
+              )
           }
         </div>
       </div>

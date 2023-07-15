@@ -1,0 +1,61 @@
+// ---
+// import { getCollection } from 'astro:content';
+// import BaseLayout from '../../../layouts/Base.astro';
+// import HorizontalCard from '../../../components/HorizontalCard.astro';
+
+
+// export async function getStaticPaths() {
+//   // Obtener todos los tags únicos de tus posts
+//   const posts = await getCollection('journal');
+//   const uniqueTags = new Set<string>();
+//   posts.forEach((post: any) => {
+//     if (post.data.tags) {
+//       post.data.tags.forEach((tag: string) => uniqueTags.add(tag));
+//     }
+//   });
+//   // Generar rutas dinámicas para cada tag
+//   const paths = Array.from(uniqueTags).map((tag) => ({
+//     params: { tag },
+//   }));
+
+//   return { paths, fallback: false };
+// }
+// export async function getStaticProps({ params }: { params: { tag: string } }) {
+//   // Obtener los posts filtrados por el tag específico
+//   const posts = await getCollection('journal');
+//   const filteredPosts = posts.filter((post: any) =>
+//     post.data.tags?.includes(params.tag)
+//   );
+
+//   return {
+//     props: {
+//       filteredPosts,
+//       tag: params.tag,
+//     },
+//   };
+// }
+
+// interface Props {
+//   filteredPosts: any[]; // Asegúrate de utilizar el tipo correcto para tus posts
+//   tag: string;
+// }
+
+// const {filteredPosts, tag} = Astro.props;
+// ---
+
+// <BaseLayout>
+//   <div>
+//     <h1 class="text-3xl font-bold mb-5">Posts tagged with "{tag}"</h1>
+//     {filteredPosts.map((post: any) => (
+//       <HorizontalCard
+//         title={post.data.title}
+//         img={post.data.heroImage}
+//         desc={post.data.description}
+//         url={`/journal/${post.slug}`}
+//         pubDate={post.data.pubDate}
+//         target="_self"
+//         key={post.slug}
+//       />
+//     ))}
+//   </div>
+// </BaseLayout>

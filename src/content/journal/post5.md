@@ -2,6 +2,9 @@
 title: "Indices de BD"
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 pubDate: "05072023"
+tags: 
+    - tag1
+    - tag2
 ---
 
 # Markdown syntax guide

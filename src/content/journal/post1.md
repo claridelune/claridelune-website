@@ -3,8 +3,9 @@ title: "Demo Post 1"
 description: "Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd"
 pubDate: "Sep 10 2022"
 tags:
-    - lorem
-    - ipsum
+    - hola
+    - otro
+    - tag
 ---
 
 ![](https://www.vippng.com/png/detail/388-3888507_cat-redhead-pixel-art-de-chat.png)

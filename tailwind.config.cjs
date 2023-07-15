@@ -18,7 +18,6 @@ module.exports = {
                     gray: '#5E81AC',
                     dark: '#43496E',
                 },
-                'prose-headings': '#5E81AC',
             },
         },
     },

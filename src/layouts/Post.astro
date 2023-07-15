@@ -4,7 +4,7 @@ import type {PostSchema} from '../content/config';
 
 export interface Props extends PostSchema {}
 
-const { title, description, pubDate, image } = Astro.props;
+const { title, description, pubDate, image, tags } = Astro.props;
 
 import { Image } from "@astrojs/image/components";
 ---
@@ -29,6 +29,16 @@ import { Image } from "@astrojs/image/components";
         <span class="text-gray-500">{pubDate}</span>
         <br />
         <div class="divider my-2"></div>
+        <div class="card-actions justify-end">
+            {tags &&
+              tags.map((tag: string) => (
+                <div class="inline-block mr-2 not-prose">
+                  <a href={`/journal/tag/${tag}`} class="inline-flex items-center px-2.5 py-1.5 rounded-md bg-nord-dark text-nord-primary text-xs">
+                    {tag}
+                  </a>
+                </div>
+                ))}
+        </div>
         <slot class="prose"/>
         </article>
     </main>

@@ -26,7 +26,7 @@ const { page } = Astro.props;
     ) : (
       <ul>
         {page.data.map((post: { data: {
-pubDate: any; title: any; heroImage: any; description: any; 
+pubDate: any; title: string; heroImage: string; description: string; tags: any; 
 }; slug: string; }) => (
           <>
             <HorizontalCard
@@ -35,8 +35,10 @@ pubDate: any; title: any; heroImage: any; description: any;
               desc={post.data.description}
               url={"/journal/" + post.slug}
               pubDate={post.data.pubDate}
+              tags={post.data.tags}
               target="_self"
             />
+            
             <div class="divider my-0" />
           </>
         ))}

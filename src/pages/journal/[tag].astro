@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../layouts/Base.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+import { getPosts } from "../../utils/utils";
+
+export async function getStaticPaths() {
+  const posts = getPosts();
+  const tags = new Set<string>();
+
+  posts.forEach((post) => {
+    if (post.tags) {
+      post.tags.forEach((tag) => {
+        tags.add(tag);
+      });
+    }
+  });
+
+  const paths = Array.from(tags).map((tag) => ({
+    params: { tag },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }: { params: any }) {
+  const { tag } = params;
+  const posts = getPosts();
+
+  const filteredPosts = posts.filter((post) => post.tags && post.tags.includes(tag));
+
+  return {
+    props: {
+      tag,
+      posts: filteredPosts,
+    },
+  };
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`Tag: ${tag}`} sideBarActiveItemID="work-journal">
+    <div class="mb-5">
+      <div class="text-3xl w-full font-bold">{`Posts tagged: ${tag}`}</div>
+    </div>
+  
+    {posts.length === 0 ? (
+      <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
+        <p class="font-bold">Sorry!</p>
+        <p>No posts found for this tag.</p>
+      </div>
+    ) : (
+      <ul>
+        {posts.map((post: { title: any; heroImage: any; description: any; slug: any; pubDate: any; }) => (
+          <>
+            <HorizontalCard
+              title={post.title}
+              img={post.heroImage}
+              desc={post.description}
+              url={`/journal/${post.slug}`}
+              pubDate={post.pubDate}
+              target="_self"
+            />
+            <div class="divider my-0" />
+          </>
+        ))}
+      </ul>
+    )}
+  </BaseLayout>

@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/Base.astro';
+import HorizontalCard from '../../../components/HorizontalCard.astro';
+
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const posts = await getCollection("journal");
+  posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return paginate(posts, { pageSize: 10 });
+}
+
+export async function getStaticProps({ params }: { params: any}) {
+  const { tag } = params;
+  console.log(tag);
+  const posts = await getCollection("journal");
+  const filteredPosts = posts.filter((post) => post.data.tags.includes(tag));
+
+  return {
+    props: {
+      posts: filteredPosts,
+      tag,
+    },
+  };
+}
+console.log("si estoy leyecndo este archivo");
+const { posts, tag } = Astro.props;
+---
+
+<BaseLayout title={`Posts tagged with ${tag}`} sideBarActiveItemID="work-journal">
+  <div class="mb-5">
+    <div class="text-3xl w-full font-bold">Posts tagged with {tag}</div>
+  </div>
+
+  {posts.length === 0 ? (
+    <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
+      <p class="font-bold">Sorry!</p>
+      <p>There are no posts with the tag {tag}.</p>
+    </div>
+  ) : (
+    <ul>
+      {posts.map((post: { data: { title: any; heroImage: any; description: any; pubDate: any; }; slug: string; }) => (
+        <>
+          <HorizontalCard
+            title={post.data.title}
+            img={post.data.heroImage}
+            desc={post.data.description}
+            url={"/journal/" + post.slug}
+            pubDate={post.data.pubDate}
+            target="_self"
+          />
+          <div class="divider my-0" />
+        </>
+      ))}
+    </ul>
+  )}
+
+  <div class="flex justify-between">
+    {Astro.props.url.prev ? (
+      <a href={Astro.props.url.prev} class="btn btn-ghost my-10 mx-5">
+        <svg
+          class="h-6 w-6 fill-current md:h-8 md:w-8"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+        </svg>{" "}
+        Recent posts
+      </a>
+    ) : (
+      <div />
+    )}
+    {Astro.props.url.next ? (
+      <a href={Astro.props.url.next} class="btn btn-ghost my-10 mx-5">
+        Older Posts{" "}
+        <svg
+          class="h-6 w-6 fill-current md:h-8 md:w-8"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          {" "}
+          <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+        </svg>
+      </a>
+    ) : (
+      <div />
+    )}
+  </div>
+</BaseLayout>
