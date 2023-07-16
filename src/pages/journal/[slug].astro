@@ -5,13 +5,14 @@ import PostLayout from '../../layouts/Post.astro';
 
 export async function getStaticPaths() {
     const postEntries = await getCollection('journal');
-    return postEntries.map(entry => ({ 
-        params: { slug: entry.slug }, props: { entry },
+    return postEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
     }));
 }
 
 interface Props {
-    entry: CollectionEntry<"journal">;
+    entry: CollectionEntry<'journal'>;
 }
 
 const { entry } = Astro.props;
@@ -20,11 +21,11 @@ const { Content } = await entry.render();
 ---
 
 <PostLayout
-title={post.title}
-description={post.description}
-pubDate={post.pubDate}
-image={post.image}
-tags={post.tags}
+    title={post.title}
+    description={post.description}
+    pubDate={post.pubDate}
+    image={post.image}
+    tags={post.tags}
 >
-<Content/>
+    <Content />
 </PostLayout>

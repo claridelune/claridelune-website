@@ -1,7 +1,7 @@
 ---
-title: "Demo Post 1"
-description: "Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd"
-pubDate: "Sep 10 2022"
+title: 'Demo Post 1'
+description: 'Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd Este es el primer post demo a dentro hay un gatito xd'
+pubDate: 'Sep 10 2022'
 tags:
     - hola
     - otro

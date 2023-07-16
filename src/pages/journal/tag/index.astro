@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/Base.astro';
+
+const posts = await getCollection('journal');
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+
+Astro.props.posts = posts;
+Astro.props.tags = tags;
+---
+
+<BaseLayout title="Tags" sideBarActiveItemID="work-journal">
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Tags</div>
+    </div>
+
+    <ul>
+        {
+            Astro.props.tags.map((tag: string) => (
+                <>
+                    <li>
+                        <u>
+                            <a href={`/journal/tag/${tag}`}>{tag}</a>
+                        </u>
+                    </li>
+                </>
+            ))
+        }
+    </ul>
+</BaseLayout>

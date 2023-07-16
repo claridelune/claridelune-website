@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/Base.astro';
+import HorizontalCard from '../../../components/HorizontalCard.astro';
+
+export async function getStaticPaths() {
+    const posts = await getCollection('journal');
+    const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+    const paths = tags.map((tag) => ({
+        params: { tag: tag ? tag.toString() : '' },
+    }));
+    return paths;
+}
+
+const { tag } = Astro.params;
+const posts = await getCollection('journal');
+const filteredPosts = posts.filter((post) => post.data.tags?.includes(tag));
+
+Astro.props.posts = filteredPosts;
+Astro.props.tag = tag;
+---
+
+<BaseLayout
+    title={`Posts tagged with ${tag}`}
+    sideBarActiveItemID="work-journal"
+>
+    <div class="mb-5">
+        <div class="text-3xl w-full font-bold">Posts tagged with {tag}</div>
+    </div>
+
+    {
+        Astro.props.posts.length === 0 ? (
+            <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
+                <p class="font-bold">Sorry!</p>
+                <p>There are no posts with the tag {tag}.</p>
+            </div>
+        ) : (
+            <ul>
+                {Astro.props.posts.map(
+                    (post: {
+                        data: {
+                            title: any;
+                            heroImage: any;
+                            description: any;
+                            pubDate: any;
+                            tags: any;
+                        };
+                        slug: string;
+                    }) => (
+                        <>
+                            <HorizontalCard
+                                title={post.data.title}
+                                img={post.data.heroImage}
+                                desc={post.data.description}
+                                url={'/journal/' + post.slug}
+                                pubDate={post.data.pubDate}
+                                tags={post.data.tags}
+                                target="_self"
+                            />
+                            <div class="divider my-0" />
+                        </>
+                    ),
+                )}
+            </ul>
+        )
+    }
+</BaseLayout>

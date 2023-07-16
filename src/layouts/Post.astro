@@ -1,45 +1,53 @@
 ---
 import Base from './Base.astro';
-import type {PostSchema} from '../content/config';
+import type { PostSchema } from '../content/config';
 
 export interface Props extends PostSchema {}
 
 const { title, description, pubDate, image, tags } = Astro.props;
 
-import { Image } from "@astrojs/image/components";
+import { Image } from '@astrojs/image/components';
 ---
 
 <Base title={title} description={description} image={image}>
     <main class="md:flex md:justify-center">
-        <article class="prose prose-lg max-w-[750px] prose-img:mx-auto text-nord-primary prose-a:text-nord-gray 
-        prose-headings:text-synthwave-bold prose-blockquote:text-synthwave-primary prose-strong:text-nord-gray">
-        {
-            image && (
-            <Image
-                aspectRatio={"16:9"}
-                width={750}
-                height={422}
-                src={image}
-                alt={title}
-                class="w-full mb-6"
-            />
-            )
-        }
-        <h1 class="title my-2 text-4xl font-bold text-nord-gray">{title}</h1>
-        <span class="text-gray-500">{pubDate}</span>
-        <br />
-        <div class="divider my-2"></div>
-        <div class="card-actions justify-end">
-            {tags &&
-              tags.map((tag: string) => (
-                <div class="inline-block mr-2 not-prose">
-                  <a href={`/journal/tag/${tag}`} class="inline-flex items-center px-2.5 py-1.5 rounded-md bg-nord-dark text-nord-primary text-xs">
-                    {tag}
-                  </a>
-                </div>
-                ))}
-        </div>
-        <slot class="prose"/>
+        <article
+            class="prose prose-lg max-w-[750px] prose-img:mx-auto text-nord-primary prose-a:text-nord-gray prose-headings:text-synthwave-bold prose-blockquote:text-synthwave-primary prose-strong:text-nord-gray"
+        >
+            {
+                image && (
+                    <Image
+                        aspectRatio={'16:9'}
+                        width={750}
+                        height={422}
+                        src={image}
+                        alt={title}
+                        class="w-full mb-6"
+                    />
+                )
+            }
+            <h1 class="title my-2 text-4xl font-bold text-nord-gray">
+                {title}
+            </h1>
+            <span class="text-gray-500">{pubDate}</span>
+            <br />
+            <div class="divider my-2"></div>
+            <div class="card-actions justify-end">
+                {
+                    tags &&
+                        tags.map((tag: string) => (
+                            <div class="inline-block mr-2 not-prose">
+                                <a
+                                    href={`/journal/tag/${tag}`}
+                                    class="inline-flex items-center px-2.5 py-1.5 rounded-md bg-nord-dark text-nord-primary text-xs"
+                                >
+                                    {tag}
+                                </a>
+                            </div>
+                        ))
+                }
+            </div>
+            <slot class="prose" />
         </article>
     </main>
 </Base>

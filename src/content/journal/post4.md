@@ -1,8 +1,8 @@
 ---
-title: "Demo Post 4"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-pubDate: "05072023"
-tags: 
+title: 'Demo Post 4'
+description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+pubDate: '05072023'
+tags:
     - tag1
     - tag2
 ---
