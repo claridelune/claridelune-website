@@ -1,5 +1,14 @@
 ---
-const { title, img, desc, url, tags, target = '_blank', pubDate } = Astro.props;
+const {
+    title,
+    img,
+    desc,
+    url,
+    tags,
+    target = '_blank',
+    pubDate,
+    pos,
+} = Astro.props;
 import { Image } from '@astrojs/image/components';
 ---
 
@@ -38,7 +47,7 @@ import { Image } from '@astrojs/image/components';
                             tags.map((tag: unknown) => (
                                 <div class="inline-block mr-2">
                                     <a
-                                        href={`/journal/tag/${tag}`}
+                                        href={`/${pos}/tag/${tag}`}
                                         class="inline-flex items-center px-2.5 py-1.5 rounded-md bg-nord-dark text-nord-primary text-xs"
                                     >
                                         {tag}
